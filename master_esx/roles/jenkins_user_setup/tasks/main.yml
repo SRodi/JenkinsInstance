@@ -1,0 +1,34 @@
+---
+
+- name: create Jenkins user
+  user:
+    name: jenkins
+    password: $6$mysecretsalt$dzkUTqGoy0c3b.S7ABeyYpTV3brsYIAYZNMVF4KTW4FSSJe.fyvuu.oupiHOK0eu8.uANVmlAxYXU5LPfGhPQ/
+    groups: sudo
+    state: present
+    home: /var/lib/jenkins
+
+- name: create key directory
+  action: file path=/var/lib/jenkins/.ssh state=directory
+    owner=0 group=0 mode=0755
+
+- name: Creates directory for ssh keys
+  file:
+    path: /var/lib/jenkins/.ssh
+    state: directory
+    owner: jenkins
+    group: jenkins
+
+- name: Generate SSH Keys
+  shell: yes y | ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+  # shell: yes y |ssh-keygen -q -t rsa -N '' -b 2048 -C "id_rsa" -f /var/lib/jenkins/.ssh/id_rsa >/dev/null
+  # shell: ssh-keygen -t rsa -N "" -b 2048 -C "id_rsa" -f /var/lib/jenkins/.ssh
+
+- name: copy file to 
+  fetch:
+    src: /root/.ssh/id_rsa.pub
+    dest: tmp/
+
+- name: make new user addition effective
+  shell: cd && pwd
+  become_user: jenkins

@@ -1,0 +1,30 @@
+---
+- name: Deploy pre-configured Jenkins slave-nodes
+  hosts: agent-nodes
+  gather_facts: false
+  become: true
+  tasks:
+  - import_role:
+      name: create_jenkins_user
+  - import_role:
+      name: install_java
+  - import_role:
+      name: install_docker
+  - import_role:
+      name: install_maven
+  - import_role:
+      name: install_node
+      
+  # CLEAN UP
+
+  - name: Remove useless apt packages from the cache
+    apt:
+      autoclean: yes
+    tags:
+      - system
+     
+  - name: Remove dependencies that are no longer required
+    apt:
+      autoremove: yes
+    tags:
+      - system

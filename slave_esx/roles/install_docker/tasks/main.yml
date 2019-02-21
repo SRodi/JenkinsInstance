@@ -1,0 +1,75 @@
+---
+
+- name: Update apt packages
+  apt:
+    update_cache: yes
+  tags:
+    - system
+
+- name: purge docker-compose and pip package
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+  with_items:
+    - docker-compose
+    - docker-py
+    - python3-pip
+
+- name: install packages
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    cache_valid_time: 84600
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+
+- name: install dependencies (Ubuntu)
+  apt: name={{item}} state=latest
+  with_items:
+    - python3-pip
+    - graphviz
+    - python-rpm
+    - yum
+    - python-setuptools
+    
+- name: Add Docker GPG key
+  
+  apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+- name: Add Docker APT repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+
+- name: Install list of packages
+  apt:
+    name: ['apt-transport-https','ca-certificates','curl','software-properties-common','docker-ce']
+    state: present
+    update_cache: yes
+
+- name: start docker service
+
+  service: name=docker state=restarted
+
+- name: Update apt packages
+  apt:
+    update_cache: yes
+
+- name: get docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.8.0/docker-compose-Linux-x86_64"
+    dest: /usr/local/bin/docker-compose
+    owner: root
+    mode: 0755
+    sha256sum: ebc6ab9ed9c971af7efec074cff7752593559496d0d5f7afb6bfd0e0310961ff
+
+- name: install docker-compose tools with pip
+  pip:
+    name: " {{ item }}"
+  with_items:
+    - pyyaml
+    #- docker-py
+    - docker-compose

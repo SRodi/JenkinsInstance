@@ -1,0 +1,256 @@
+---
+host: 192.168.60.11
+jenkins_plugins:
+  plugin1:
+      name: ace-editor
+  plugin2:
+      name: analysis-core
+  plugin3:
+      name: analysis-model-api
+  plugin4:
+      name: anchore-container-scanner
+  plugin5:
+      name: ansicolor
+  plugin6:
+      name: antisamy-markup-formatter
+  plugin7:
+      name: ant
+  plugin8:
+      name: apache-httpcomponents-client-4-api
+  plugin9:
+      name: authentication-tokens
+  plugin10:
+      name: azure-commons
+  plugin11:
+      name: bouncycastle-api
+  plugin12:
+      name: branch-api
+  plugin13:
+      name: build-pipeline-plugin
+  plugin14:
+      name: build-timeout
+  plugin15:
+      name: build-token-trigger
+  plugin16:
+      name: cloudbees-folder
+  plugin17:
+      name: clover
+  plugin18:
+      name: command-launcher
+  plugin19:
+      name: conditional-buildstep
+  plugin20:
+      name: config-file-provider
+  plugin21:
+      name: credentials-binding
+  plugin22:
+      name: credentials
+  plugin23:
+      name: cucumber-testresult-plugin
+  plugin24:
+      name: dependency-check-jenkins-plugin
+  plugin25:
+      name: dependency-track
+  plugin26:
+      name: display-url-api
+  plugin27:
+      name: docker-build-step
+  plugin28:
+      name: docker-commons
+  plugin29:
+      name: docker-compose-build-step
+  plugin30:
+      name: docker-java-api
+  plugin31:
+      name: docker-plugin
+  plugin32:
+      name: docker-workflow
+  plugin33:
+      name: durable-task
+  plugin34:
+      name: email-ext
+  plugin35:
+      name: external-monitor-job
+  plugin36:
+      name: git-client
+  plugin37:
+      name: github-api
+  plugin38:
+      name: github-branch-source
+  plugin39:
+      name: github
+  plugin40:
+      name: git
+  plugin41:
+      name: gitlab-hook
+  plugin42:
+      name: gitlab-logo
+  plugin43:
+      name: gitlab-merge-request-jenkins
+  plugin44:
+      name: gitlab-oauth
+  plugin45:
+      name: gitlab-plugin
+  plugin46:
+      name: git-server
+  plugin47:
+      name: gradle
+  plugin48:
+      name: handlebars
+  plugin49:
+      name: htmlpublisher
+  plugin50:
+      name: jackson2-api
+  plugin51:
+      name: jacoco
+  plugin52:
+      name: javadoc
+  plugin53:
+      name: jdk-tool
+  plugin54:
+      name: jquery-detached
+  plugin55:
+      name: jquery
+  plugin56:
+      name: jsch
+  plugin57:
+      name: junit
+  plugin58:
+      name: kubernetes-cd
+  plugin59:
+      name: kubernetes-cli
+  plugin60:
+      name: kubernetes-credentials
+  plugin61:
+      name: kubernetes-credentials-provider.tmp
+  plugin62:
+      name: kubernetes
+  plugin63:
+      name: kubernetes-pipeline-devops-steps
+  plugin64:
+      name: kubernetes-pipeline-steps
+  plugin65:
+      name: ldap
+  plugin66:
+      name: lockable-resources
+  plugin67:
+      name: mailer
+  plugin68:
+      name: mapdb-api
+  plugin69:
+      name: matrix-auth
+  plugin70:
+      name: matrix-project
+  plugin71:
+      name: maven-plugin
+  plugin72:
+      name: metrics
+  plugin73:
+      name: momentjs
+  plugin74:
+      name: nexus-artifact-uploader
+  plugin75:
+      name: nexus-jenkins-plugin
+  plugin76:
+      name: pam-auth
+  plugin77:
+      name: parameterized-trigger
+  plugin78:
+      name: pipeline-build-step
+  plugin79:
+      name: pipeline-github-lib
+  plugin80:
+      name: pipeline-graph-analysis
+  plugin81:
+      name: pipeline-input-step
+  plugin82:
+      name: pipeline-milestone-step
+  plugin83:
+      name: pipeline-model-api
+  plugin84:
+      name: pipeline-model-declarative-agent
+  plugin85:
+      name: pipeline-model-definition
+  plugin86:
+      name: pipeline-model-extensions
+  plugin87:
+      name: pipeline-multibranch-defaults
+  plugin88:
+      name: pipeline-rest-api
+  plugin89:
+      name: pipeline-stage-step
+  plugin90:
+      name: pipeline-stage-tags-metadata
+  plugin91:
+      name: pipeline-stage-view
+  plugin92:
+      name: pipeline-utility-steps
+  plugin93:
+      name: plain-credentials
+  plugin94:
+      name: prometheus
+  plugin95:
+      name: resource-disposer
+  plugin96:
+      name: rocketchatnotifier
+  plugin97:
+      name: ruby-runtime
+  plugin98:
+      name: run-condition
+  plugin99:
+      name: scm-api
+  plugin100:
+      name: script-security
+  plugin101:
+      name: ssh-credentials
+  plugin102:
+      name: ssh-slaves
+  plugin103:
+      name: structs
+  plugin104:
+      name: subversion.tmp
+  plugin105:
+      name: test-results-analyzer
+  plugin106:
+      name: timestamper
+  plugin107:
+      name: token-macro
+  plugin108:
+      name: trilead-api
+  plugin109:
+      name: variant
+  plugin110:
+      name: violation-comments-to-gitlab
+  plugin111:
+      name: warnings-ng
+  plugin112:
+      name: windows-slaves
+  plugin113:
+      name: workflow-aggregator
+  plugin114:
+      name: workflow-api
+  plugin115:
+      name: workflow-basic-steps
+  plugin116:
+      name: workflow-cps-global-lib
+  plugin117:
+      name: workflow-cps
+  plugin118:
+      name: workflow-durable-task-step
+  plugin119:
+      name: workflow-job
+  plugin120:
+      name: workflow-multibranch
+  plugin121:
+      name: workflow-scm-step
+  plugin122:
+      name: workflow-step-api
+  plugin123:
+      name: workflow-support
+  plugin124:
+      name: ws-cleanup
+  plugin125:
+      name: xunit
+  plugin126:
+      name: ssh-agent
+

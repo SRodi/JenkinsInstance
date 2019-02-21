@@ -1,0 +1,12 @@
+---
+- name: restart Jenkins
+  hosts: master
+  gather_facts: false
+  become: true
+  become_user: root
+  tasks:
+
+  - name: Restart Jenkins
+    service:
+      name: jenkins
+      state: restarted

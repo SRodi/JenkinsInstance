@@ -1,0 +1,18 @@
+# Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "jenkins-master-node" do |machine|
+    machine.vm.box = "bento/ubuntu-18.04"#"ubuntu/trusty64"
+    machine.vm.hostname = "jenkins-master-node"
+    machine.vm.network "private_network", ip: "192.168.60.11"
+
+    machine.vm.provision :ansible do |ansible|
+      ansible.limit = "master-node"
+      ansible.playbook = "site.yml"
+      ansible.inventory_path = "inventory/hosts"
+      ansible.verbose = "-v"
+    end
+  end
+end

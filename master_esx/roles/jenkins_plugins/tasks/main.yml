@@ -1,0 +1,51 @@
+---
+# - name: Wait for Jenkins to start up
+#   uri:
+#     url: http://localhost:8080
+#     status_code: 200
+#     timeout: 5
+#   register: jenkins_service_status
+#   # Keep trying for 5 mins in 5 sec intervals
+#   retries: 60
+#   delay: 5
+#   until: >
+#      'status' in jenkins_service_status and
+#      jenkins_service_status['status'] == 200
+
+# - name: Waits for port 8080 of VM to close active connections, start checking in 10 s
+#   wait_for:
+#     host: "{{ host }}"
+#     port: 8080
+#     delay: 10
+#     state: drained
+#   register: jenkins_service_status
+#   # Keep trying for 5 mins in 5 sec intervals
+#   until: >
+#     'status' in jenkins_service_status 
+#     and jenkins_service_status['status'] == 200
+#   retries: 30
+#   delay: 5
+  
+- name: Update apt cache.
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: ca-certificates update command line execution
+  become_user: root
+  shell: update-ca-certificates
+
+- name: Install Jenkins plugins
+  jenkins_plugin:
+    name: "{{ item.value.name }}"
+    url_username: admin
+    url_password: admin
+    validate_certs: False
+  with_dict: "{{ jenkins_plugins }}"
+  register: plugin_result
+  until: plugin_result is success
+  retries: 10
+  delay: 3
+
+- name: Restart Jenkins
+  service:
+    name: jenkins
+    state: restarted 

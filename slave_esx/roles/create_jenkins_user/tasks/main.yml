@@ -1,0 +1,15 @@
+---
+
+- name: create Jenkins user
+  user:
+    name: jenkins
+    password: $6$mysecretsalt$dzkUTqGoy0c3b.S7ABeyYpTV3brsYIAYZNMVF4KTW4FSSJe.fyvuu.oupiHOK0eu8.uANVmlAxYXU5LPfGhPQ/
+    groups: sudo
+    state: present
+    home: /var/lib/jenkins
+
+- name: add master node public key to authorized key
+  authorized_key:
+    user: jenkins
+    state: present
+    key: "{{ lookup('file', 'master_public_key/master_node_key') }}"  

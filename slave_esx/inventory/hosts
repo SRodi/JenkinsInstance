@@ -1,0 +1,6 @@
+[agent-nodes]
+192.168.60.12
+192.168.60.13
+[agent-nodes:vars]
+ansible_python_interpreter=/usr/bin/python3
+

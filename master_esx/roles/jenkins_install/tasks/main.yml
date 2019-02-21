@@ -1,0 +1,37 @@
+---
+
+- name: install wget
+  apt:
+    name: wget
+    state: present
+
+- name: Add Oracle Java Repository
+
+  apt_repository: repo='ppa:webupd8team/java'
+
+- name: Accept Java 8 License
+    
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: Install Oracle Java 8
+  apt: name={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
+    - oracle-java8-set-default
+
+- name: Add the Jenkins public GPG key to the apt repo
+  apt_key: 
+    url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
+    state=present
+
+- name: Add Jenkins to the trusted sources list
+  apt_repository: 
+    repo='deb http://pkg.jenkins-ci.org/debian binary/'
+    state=present
+
+- name: install jenkins
+  apt:
+    name: jenkins
+    state: present
+

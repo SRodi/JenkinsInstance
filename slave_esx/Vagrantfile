@@ -1,0 +1,37 @@
+# Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # number of machines --> remember to update inventory file if changing this!!
+  N = 2
+
+  VAGRANT_VM_PROVIDER = "virtualbox"
+  ANSIBLE_RAW_SSH_ARGS = []
+
+  (1..N-1).each do |machine_id|
+    ANSIBLE_RAW_SSH_ARGS << "-o IdentityFile=.vagrant/machines/machine#{machine_id}/#{VAGRANT_VM_PROVIDER}/private_key"
+  end
+
+  (1..N).each do |machine_id|
+    config.vm.define "machine#{machine_id}" do |machine|
+      machine.vm.box = "bento/ubuntu-18.04"
+      machine.vm.hostname = "jenkins-agent-node-#{machine_id}"
+      # ip address of guest machines needs to be updated here 
+      machine.vm.network "private_network", ip: "192.168.60.#{11+machine_id}"
+
+      # Only execute once the Ansible provisioner,
+      # when all the machines are up and ready. 
+      if machine_id == N
+        machine.vm.provision :ansible do |ansible|
+          # Disable default limit to connect to all the machines
+          ansible.limit = "all"
+          ansible.playbook = "site.yml"
+          ansible.inventory_path = "inventory/hosts"
+          ansible.verbose = "-v"
+          ansible.raw_ssh_args = ANSIBLE_RAW_SSH_ARGS
+        end
+      end
+    end
+  end
+end
