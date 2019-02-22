@@ -9,7 +9,7 @@
 
 - name: copy file to remote jenkins folder
   copy:
-    src: security/jenkins.install.UpgradeWizard.state
+    src: roles/jenkins_security_setup/security/jenkins.install.UpgradeWizard.state
     dest: /var/lib/jenkins
     owner: jenkins
     group: jenkins
@@ -17,7 +17,7 @@
 
 - name: copy groovy script to remote. This creates admin account (admin,admin)
   copy:
-    src: security/basic-security.groovy
+    src: roles/jenkins_security_setup/security/basic-security.groovy
     dest: /var/lib/jenkins/init.groovy.d
     owner: jenkins
     group: jenkins
@@ -28,8 +28,10 @@
     name: jenkins
     state: restarted
 
-# - name: sleep for 30 seconds and continue with play
-#   wait_for: timeout=30
-#   delegate_to: localhost
+# - name: sleep for 35 seconds and continue with play
+#   wait_for: timeout=35
+  
+# - name: delete .groovy script from init folder
+#   file: path=/var/lib/jenkins/init.groovy.d/basic-security.groovy state=absent
 
 

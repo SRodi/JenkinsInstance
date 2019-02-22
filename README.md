@@ -1,6 +1,6 @@
 # Goal: Construct a jenkins instance that allows for repeatable deployments, a cloud slave pool, a secure access mechanism and container security.
 
-# Pre-requisites (localhost):
+# Pre-requisites (on host machine):
 	- ansible 2.7.7
 	- python 3.6.7
 
@@ -44,11 +44,17 @@ Agent-nodes are created with a bash script which:
 - copies .groovy script to init.groovy.d folder within Jenkins master-node (scripts withing this folder are executed when Jenkins server restarts)
 - prompts the execution of ansible playbook to restart jenkins service
 
+# Normal flow:
 
+1. create/provision Jenkins master-node (see additional requirements in master_esx/README.md)
+2. login to Jenkins master-node on a browser and create credentials "MasterNode" (SSH Username with private key entered directly)
+3. create/provision Jenkins slave-nodes (see additional requirements in slave_esx/README.md)
+4. SSH from master-node machine to agent-node machine
+5. run script add-node.sh to add agent nodes to Jenkins master-node (see additional requirements in add-jenkins-agent/README.md)
 
 # Known issues
+
 - provisioning is customized and works only for Ubuntu 18.04
-- authentication issue when creating agent-nodes
-	workaround:
-		- ssh into agent-node from master-node
+	
+
 

@@ -10,8 +10,8 @@ ansible-playbook -i inventory/hosts --limit agent-nodes site.yml -k -u {{ remote
 
 # requirements:
 	
-	- Vagrantfile needs to be updated with guest machine IP addresses
+	1. Vagrantfile needs to be updated with guest machine IP addresses (if using vagrant to create VMs)
 
-	- add IPs to agent-nodes field in inventory/hosts inventory file
+	2. agent-nodes IPs to be added in inventory/hosts file
 
-	- make sure master-node puclic key is correctly stored in file /master_public_key/master_node_key
+	3. correct master-node puclic key must be stored in master_public_key/master_node_key

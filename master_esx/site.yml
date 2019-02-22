@@ -4,10 +4,10 @@
   gather_facts: false
   become: true
   tasks:
-  - import_role:
-      name: jenkins_user_setup
-  - import_role:
-      name: jenkins_install
+  # - import_role:
+  #     name: jenkins_user_setup
+  # - import_role:
+  #     name: jenkins_install
   - import_role:
       name: jenkins_security_setup
   - import_role:

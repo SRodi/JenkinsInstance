@@ -10,6 +10,6 @@ ansible-playbook -i inventory/hosts site.yml --limit master-node -k -u {{ remote
 
 # requirements:
 
-	- modify inventory/hosts with host machine ip
+	1. add master-machine IP to Vagrantfile (if using vagrant to create VM) 
 
-	- modify roles/jenkins_plugins/vars/main.yml with host IP
+	2. modify inventory/hosts with host machine ip

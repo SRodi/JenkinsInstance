@@ -1,19 +1,12 @@
 # Goal: programmatically add and configure an agent-node to Jenkins master instance
 
 # to run script
-bash add-node.sh 
+sudo bash add-node.sh {{ master-node IP }}
 
 # requirements:
 	
-	- jenkins instance must have credentials (i've hardcoded "MasterNode" in groovy/addNode.groovy)
+	1. jenkins instance must have global-scope, "SSH Username with private key" credentials with ID:"MasterNode" and private key entered directly. (upddate groovy/addNode.groovy if another ID is used). 
 
-	- master-node IP must be added to line 33 of add-node.sh
+	2. it is necessary to SSH from master-node machine to agent-node machine to add master to the list of known_hosts
 
-	- playbook/inventory/hosts file needs to be updated with master-node IP
-
-	- ssh password for jenkins user in remote machine is required to copy script, restart jenkins service and delete script
-
-# known issues:
-
-authentication could fail (jenkins master-node logs). workaround:
-	- ssh from master-node to each agent-node 
+	2. ssh password for Jenkins user in remote agent-machine is required to copy script, restart jenkins service and delete .groovy script on remote master (default: "jenkins")

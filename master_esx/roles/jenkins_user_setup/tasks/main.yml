@@ -21,10 +21,8 @@
 
 - name: Generate SSH Keys
   shell: yes y | ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
-  # shell: yes y |ssh-keygen -q -t rsa -N '' -b 2048 -C "id_rsa" -f /var/lib/jenkins/.ssh/id_rsa >/dev/null
-  # shell: ssh-keygen -t rsa -N "" -b 2048 -C "id_rsa" -f /var/lib/jenkins/.ssh
 
-- name: copy file to 
+- name: copy public key to project tmp folder 
   fetch:
     src: /root/.ssh/id_rsa.pub
     dest: tmp/
